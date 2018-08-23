@@ -1,0 +1,41 @@
+html {
+    height: 100%;
+}
+
+
+body {
+    height: inherit;
+    background: #000900;
+    background: url("../images/splashscreenBody.jpg") 100% 100% no-repeat;
+    background-size: cover;
+    background-position: center;
+    /* Prevent the ugly blue highlighting from accidental selection of text */
+    user-select: none;
+}
+#wrapper {
+    position: absolute;
+}
+#gamecontainer {
+    /* Set game container width, height, and background */
+    width: 600px;
+    height: 600px;
+    background: url("../images/splashscreenGame.jpg");
+    background-size: cover;
+
+}
+.gamelayer {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    display: none;
+}
+
+#gamestartscreen {
+    padding-top: 250px;
+    text-align: center;
+}
+#gamestartscreen img {
+    width: 60px;
+    margin: 10px;
+    cursor: pointer;
+}
