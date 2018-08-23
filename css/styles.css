@@ -1,7 +1,3 @@
-html {
-    height: 100%;
-}
-
 
 body {
     height: inherit;
@@ -9,18 +5,29 @@ body {
     background: url("../images/splashscreenBody.jpg") 100% 100% no-repeat;
     background-size: cover;
     background-position: center;
+    font-family: 'Electrolize', sans-serif;
     /* Prevent the ugly blue highlighting from accidental selection of text */
     user-select: none;
 }
 #wrapper {
-    position: absolute;
+    position: relative;
+    margin-top: 10rem;
+    width: 600px;
+    margin: 10rem auto;
+
+    box-shadow: 1px 1px 80px white;
+    border-radius: 10px;
+
 }
 #gamecontainer {
     /* Set game container width, height, and background */
     width: 600px;
     height: 600px;
-    background: url("../images/splashscreenGame.jpg");
-    background-size: cover;
+    background-image: url("../images/MainHeader.png");
+    background-repeat: no-repeat;
+    background-position: center  top 20%;
+    background-color: rgba(148, 148, 148, 0.3);
+
 
 }
 .gamelayer {
@@ -31,11 +38,62 @@ body {
 }
 
 #gamestartscreen {
-    padding-top: 250px;
     text-align: center;
 }
 #gamestartscreen img {
-    width: 60px;
+    width: 100px;
     margin: 10px;
     cursor: pointer;
+    border-radius: 100%;
 }
+
+#gamestartscreen > .btn-group {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 300px;
+}
+
+#gamestartscreen  .btn_wrap__header {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: lightgrey;
+    text-shadow: 1px 1px 5px black;
+}
+
+#levelWrap {
+    display: flex;
+    justify-content: center;
+}
+
+#levelselectscreen input {
+    margin-top: 300px;
+    margin-right: 20px;
+    cursor: pointer;
+    background: url("../images/btnLevel.png") no-repeat;
+    background-size: cover;
+    color: white;
+    text-shadow: 1px 1px 3px black;
+    font-size: 20px;
+    width: 150px;
+    height: 64px;
+    border: 0;
+    /* Remove the default blue border when an input is selected */
+    outline: 0;
+}
+
+#loadingscreen {
+    background: url("../images/loader.gif") no-repeat;
+    background-position: top 220px center;
+}
+
+#loadingmessage {
+    margin-top: 550px;
+    text-align: center;
+    height: 50px;
+    color: white;
+    font-size: 2rem;
+    text-transform: uppercase;
+    text-shadow: 0 0 5px black;
+}
+
+
