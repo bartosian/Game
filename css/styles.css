@@ -96,4 +96,27 @@ body {
     text-shadow: 0 0 5px black;
 }
 
+/* Score Screen */
+#scorescreen {
+    height: 60px;
+    font-size: 2rem;
+    text-shadow: 0 0 2px black;
+    color: white;
+}
+
+#scorescreen img {
+    opacity: 0.6;
+    top: 5%;
+    left: 5%;
+    position: relative;
+    padding: 8px;
+    cursor: pointer;
+    width: 60px;
+}
+#score {
+    position: absolute;
+    top: 5%;
+    right: 5%;
+}
+
 
