@@ -1,3 +1,4 @@
+/* GENERAL */
 
 body {
     height: inherit;
@@ -42,6 +43,8 @@ canvas {
     display: none;
 }
 
+/* GAMESTARTSCREEN */
+
 #gamestartscreen {
     text-align: center;
 }
@@ -62,8 +65,35 @@ canvas {
     font-size: 2.5rem;
     font-weight: bold;
     color: lightgrey;
-    text-shadow: 1px 1px 5px black;
+    text-shadow: 0 0 8px black;
+    animation: showHide ease-in 500ms  infinite  alternate;
 }
+
+@keyframes showHide  {
+    from {
+        opacity: 1;
+    }
+    to {
+       opacity: 0;
+    }
+}
+
+#gamestartscreen > .earth {
+    width: 200px;
+    margin: 0;
+
+}
+
+#gamestartscreen > .aster {
+    position: absolute;
+    bottom: 100px;
+    width: 100px;
+    right: 180px;
+
+
+}
+
+/* LEVELSELECTSCREEN */
 
 #levelWrap {
     display: flex;
@@ -121,6 +151,8 @@ canvas {
     flex-direction: column;
     justify-content: space-between;
 }
+
+/* LOADINGSCREEN */
 
 #loadingscreen {
     background: url("../images/loader.gif") no-repeat;

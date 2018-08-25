@@ -76,7 +76,7 @@ var game = {
             // Increment Timer every loop
             this.Timer++;
             // Every 10th iteration creating new asteroid
-            if (this.Timer % 10==0) {
+            if (this.Timer % 20==0) {
                 this.asteroids.push({
                     angle:0,
                     dxangle:Math.random()*0.2-0.1,
