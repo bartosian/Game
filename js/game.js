@@ -65,7 +65,7 @@ var game = {
         game.asteroids = [];
         game.fires = [];
         game.explosions = [];
-        game.ship = {x:300,y:300,animx:0,animy:0};
+        game.ship = {x:350,y:350,animx:0,animy:0};
         game.Timer = 0;
 
         game.animationFrame = window.requestAnimFrame(game.animate, game.canvas);
@@ -81,7 +81,7 @@ var game = {
                     angle:0,
                     dxangle:Math.random()*0.2-0.1,
                     del:0,
-                    x:Math.random()*550,
+                    x:Math.random()*650,
                     y:-50,
                     dx:Math.random()*2-1,
                     dy:Math.random()*2+1
@@ -102,8 +102,8 @@ var game = {
                 this.asteroids[i].angle=this.asteroids[i].angle+this.asteroids[i].dxangle;
 
                 // Screen bounce check
-                if (this.asteroids[i].x<=0 || this.asteroids[i].x>=550) this.asteroids[i].dx=-this.asteroids[i].dx;
-                if (this.asteroids[i].y>=650) this.asteroids.splice(i,1);
+                if (this.asteroids[i].x<=0 || this.asteroids[i].x>=650) this.asteroids[i].dx=-this.asteroids[i].dx;
+                if (this.asteroids[i].y>=750) this.asteroids.splice(i,1);
 
                 // Asteroids and fires collisions
                 for (j in this.fires) {
@@ -151,9 +151,9 @@ var game = {
 
         game.update();
             //Clear canvas
-            game.context.clearRect(0, 0, 600, 600);
+            game.context.clearRect(0, 0, 700, 700);
             //Draw background
-            game.context.drawImage(game.currentLevel.backgroundImage, 0, 0, 600, 600);
+            game.context.drawImage(game.currentLevel.backgroundImage, 0, 0, 700, 700);
             //Draw fires
             for (i in game.fires) {
                 game.context.drawImage(game.currentLevel.shot, game.fires[i].x, game.fires[i].y, 30, 30);

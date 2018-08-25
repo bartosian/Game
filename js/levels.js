@@ -4,11 +4,19 @@ var levels = {
     // Level data
     data: [{   // First level
         ship: "ship",
+        nameLevel: "Wanderer",
         background: "fon",
         enemy: "astero",
         entities: []
     }, {   // First level
         ship: "ship",
+        nameLevel: "Predator",
+        background: "fon",
+        enemy: "astero",
+        entities: []
+    },{   // First level
+        ship: "ship",
+        nameLevel: "Patrol",
         background: "fon",
         enemy: "astero",
         entities: []
@@ -25,7 +33,7 @@ var levels = {
         for (let i = 0; i < levels.data.length; i++) {
             var button = document.createElement("input");
             button.type = "button";
-            button.value = "Level " + (i + 1); // Level labels are 1, 2
+            button.value = levels.data[i].nameLevel.toUpperCase(); // Level labels are 1, 2
             button.addEventListener("click", () => { buttonClickHandler(i) });
             levelSelectScreen.appendChild(button);
         }
