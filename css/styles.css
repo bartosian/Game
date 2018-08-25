@@ -144,7 +144,7 @@ canvas {
     text-align: right;
     text-shadow: 1px 1px 2px black;
 }
-}
+
 
 .advantages__block {
     display: flex;
@@ -178,7 +178,7 @@ canvas {
 }
 
 #scorescreen img {
-    opacity: 0.8;
+    opacity: 0.5;
     top: 5%;
     left: 5%;
     position: relative;

@@ -90,9 +90,9 @@ var game = {
             }
                 //Every 30th iterations creating new fire
             if (this.Timer%30==0) {
-                this.fires.push({x:this.ship.x+10,y:this.ship.y,dx:0,dy:-5.2});
-                this.fires.push({x:this.ship.x+10,y:this.ship.y,dx:0.5,dy:-5});
-                this.fires.push({x:this.ship.x+10,y:this.ship.y,dx:-0.5,dy:-5});
+                this.fires.push({x:this.ship.x+22,y:this.ship.y,dx:0,dy:-5.2});
+                this.fires.push({x:this.ship.x+22,y:this.ship.y,dx:0.5,dy:-5});
+                this.fires.push({x:this.ship.x+22,y:this.ship.y,dx:-0.5,dy:-5});
             }
 
                 // Asteroids motion
@@ -109,7 +109,6 @@ var game = {
                 for (j in this.fires) {
 
                     if (Math.abs(this.asteroids[i].x+25-this.fires[j].x-15)<50 && Math.abs(this.asteroids[i].y-this.fires[j].y)<25) {
-
                         // Adding new explosion
                         this.explosions.push({x:this.asteroids[i].x-25,y:this.asteroids[i].y-25,animx:0,animy:0});
 
@@ -158,10 +157,10 @@ var game = {
             for (i in game.fires) {
                 game.context.drawImage(game.currentLevel.shot, game.fires[i].x, game.fires[i].y, 30, 30);
             }
-            //Draw dhip
+            //Draw ship
             game.context.drawImage(game.currentLevel.ship, game.ship.x, game.ship.y);
             //Draw shield
-            game.context.drawImage(game.currentLevel.shield, 192*Math.floor(game.ship.animx),192*Math.floor(game.ship.animy),192,192, game.ship.x-25, game.ship.y-25, 100, 100);
+            game.context.drawImage(game.currentLevel.shield, 192*Math.floor(game.ship.animx),192*Math.floor(game.ship.animy),192,192, game.ship.x-25, game.ship.y-25, 120, 130);
             //Draw asteroids
             for (i in game.asteroids) {
                 //context.drawImage(asterimg, aster[i].x, aster[i].y, 50, 50);
@@ -183,11 +182,17 @@ var game = {
                 game.context.drawImage(game.currentLevel.explosion, 128*Math.floor(game.explosions[i].animx),128*Math.floor(game.explosions[i].animy),128,128, game.explosions[i].x, game.explosions[i].y, 100, 100);
             }
         }
-
-
         if (!game.ended) {
             game.animationFrame = window.requestAnimationFrame(game.animate, game.canvas);
         } },
+    finish: function() {
+        game.ended = true;
+
+        // Hide Screen
+        game.hideScreens();
+        // Display the game canvas and score
+        game.showScreen("gamestartscreen");
+    }
 };
 
 // Initialize game once page has fully loaded
