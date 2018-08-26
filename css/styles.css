@@ -214,4 +214,70 @@ canvas {
     }
 }
 
+/* Endingscreen */
+
+#ending-wrapper {
+    margin-top: 300px;
+    display: flex;
+    flex-direction: column;
+    color: black;
+}
+
+#btnGroup {
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+}
+
+#btnGroup p {
+    padding: 0 10px;
+}
+
+#btnGroup span {
+    font-size: 1.5rem;
+    color: rgb(235, 235, 235);
+    text-shadow: 0 0 5px black;
+
+}
+
+#ending-wrapper img {
+    padding: 8px;
+    cursor: pointer;
+    width: 80px;
+}
+
+.endingoption {
+    display: flex;
+    flex-direction: column;
+    width: 33%;
+    align-items: center;
+}
+
+#endingmessage {
+    font-size: 6rem;
+    font-weight: bold;
+    text-align: center;
+    text-shadow: 0 0 10px white;
+    letter-spacing: 10px;
+    text-transform: uppercase;
+}
+
+
+#scoremessage {
+    text-align: center;
+    font-size: 4rem;
+    color: rgb(235, 235, 235);
+    text-shadow: 0 0 5px black;
+    padding: 2rem 0;
+    text-transform: uppercase;
+}
+
+#endScoreVal {
+    color: red;
+    text-shadow: 0 0 5px black;
+    animation: showHide ease-in 500ms  infinite  alternate;
+}
+
+
+
 

@@ -65,6 +65,7 @@ var game = {
         game.asteroids = [];
         game.fires = [];
         game.explosions = [];
+        game.shields = [];
         game.ship = {x:350,y:350,animx:0,animy:0};
         game.Timer = 0;
 
@@ -72,11 +73,11 @@ var game = {
     },
 
     update: function() {
-
+            var counter = 10;
             // Increment Timer every loop
             this.Timer++;
             // Every 10th iteration creating new asteroid
-            if (this.Timer % 20==0) {
+            if (this.Timer % counter == 0) {
                 this.asteroids.push({
                     angle:0,
                     dxangle:Math.random()*0.2-0.1,
@@ -88,12 +89,26 @@ var game = {
                 });
 
             }
-                //Every 30th iterations creating new fire
+
+        //Every 30th iterations creating new fire
             if (this.Timer%30==0) {
                 this.currentLevel.weapons > 2 ? this.fires.push({x:this.ship.x+22,y:this.ship.y,dx:0,dy:-5.2}) : null;
                 this.fires.push({x:this.ship.x+22,y:this.ship.y,dx:0.5,dy:-5});
                 this.fires.push({x:this.ship.x+22,y:this.ship.y,dx:-0.5,dy:-5});
             }
+
+        //Every 3600th iterations creating new shield
+        if (this.Timer%1800==0) {
+            this.shields.push({
+                angle: 0,
+                dxangle:Math.random()*0.2-0.1,
+                del:0,
+                x:Math.random()*650,
+                y:-50,
+                dx:Math.random()*2-1,
+                dy:Math.random()*2+1
+            });
+        }
 
                 // Asteroids motion
             for (i in this.asteroids) {
@@ -105,7 +120,7 @@ var game = {
                 if (this.asteroids[i].x<=0 || this.asteroids[i].x>=650) this.asteroids[i].dx=-this.asteroids[i].dx;
                 if (this.asteroids[i].y>=750) {
                     this.asteroids.splice(i,1);
-                    this.updateScore(-3);
+                    this.updateScore(-1);
                 }
 
                 // Asteroids and fires collisions
@@ -125,8 +140,32 @@ var game = {
 
                 if (this.asteroids[i].del==1) this.asteroids.splice(i,1);
 
-
             }
+
+        // Shields motion
+        for (h in this.shields) {
+            this.shields[h].x=this.shields[h].x+this.shields[h].dx;
+            this.shields[h].y=this.shields[h].y+this.shields[h].dy;
+            this.shields[h].angle=this.shields[h].angle+this.shields[h].dxangle;
+
+            // Screen bounce check
+            if (this.shields[h].x<=0 || this.shields[h].x>=650) this.shields[h].dx=-this.shields[h].dx;
+            if (this.shields[h].y>=750) {
+                this.shields.splice(h,1);
+            }
+
+            // Shields and ship collisions
+                if (Math.abs(this.shields[h].x+25-this.ship.x-35)< 65 && Math.abs(this.shields[h].y-this.ship.y)<50) {
+                    //Mark shield on deleting
+                    this.shields[h].del=1;
+                    if(this.currentLevel.shieldBounce < 3) {
+                        this.currentLevel.shieldBounce++;
+                    }
+            }
+
+            if (this.shields[h].del==1) this.shields.splice(h,1);
+
+        }
 
         for (k in this.asteroids) {
 
@@ -141,12 +180,11 @@ var game = {
                     this.currentLevel.armourBounce--;
 
                     if(this.currentLevel.armourBounce === 0) {
-                        this.finish();
+                        this.finish("endingscreen");
                     }
                 }
                 //Mark asteroid on deleting
                 this.asteroids[k].del = 1;
-                this.fires.splice(j, 1);
                 break;
             }
 
@@ -217,35 +255,49 @@ var game = {
 
             //Draw asteroids
             for (i in game.asteroids) {
-                //context.drawImage(asterimg, aster[i].x, aster[i].y, 50, 50);
                 //Rotate asteroids
                 game.context.save();
                 game.context.translate(game.asteroids[i].x+25, game.asteroids[i].y+25);
                 game.context.rotate(game.asteroids[i].angle);
                 game.context.drawImage(game.currentLevel.enemy, -25, -25, 50, 50);
                 game.context.restore();
-                //context.beginPath();
-                //context.lineWidth="2";
-                //context.strokeStyle="green";
-                //context.rect(aster[i].x, aster[i].y, 50, 50);
-                //context.stroke();
             }
+
+        //Draw shields
+        for (s in game.shields) {
+            //Rotate shields
+            game.context.save();
+            game.context.translate(game.shields[s].x+25, game.shields[s].y+25);
+            game.context.rotate(game.shields[s].angle);
+            game.context.drawImage(game.currentLevel.shieldIcon, -25, -25, 50, 50);
+            game.context.restore();
+        }
             //Draw explosions
         if(game.explosions.length !== 0) {
             for (i in game.explosions) {
                 game.context.drawImage(game.currentLevel.explosion, 128*Math.floor(game.explosions[i].animx),128*Math.floor(game.explosions[i].animy),128,128, game.explosions[i].x, game.explosions[i].y, 100, 100);
             }
         }
+            //Draw life and shield
+        for(var i = 0; i < game.currentLevel.armourBounce; i++) {
+            game.context.drawImage(game.currentLevel.life, 540 + i * 25, 10, 20, 20);
+        }
+
+        for(var i = 0; i < game.currentLevel.shieldBounce; i++) {
+            game.context.drawImage(game.currentLevel.shieldIcon, 540 + i * 30, 120, 25, 25);
+        }
+        //Check if game ended
         if (!game.ended) {
             game.animationFrame = window.requestAnimationFrame(game.animate, game.canvas);
         } },
-    finish: function() {
+    finish: function(screen) {
         game.ended = true;
-
+        var endScoreVal = document.getElementById("endScoreVal");
+        endScoreVal.innerHTML = game.score;
         // Hide Screen
         game.hideScreens();
         // Display the game canvas and score
-        game.showScreen("gamestartscreen");
+        screen ? game.showScreen(screen) : game.showScreen("gamestartscreen");
     }
 };
 
