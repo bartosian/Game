@@ -90,7 +90,7 @@ var game = {
             }
                 //Every 30th iterations creating new fire
             if (this.Timer%30==0) {
-                this.fires.push({x:this.ship.x+22,y:this.ship.y,dx:0,dy:-5.2});
+                this.currentLevel.weapons > 2 ? this.fires.push({x:this.ship.x+22,y:this.ship.y,dx:0,dy:-5.2}) : null;
                 this.fires.push({x:this.ship.x+22,y:this.ship.y,dx:0.5,dy:-5});
                 this.fires.push({x:this.ship.x+22,y:this.ship.y,dx:-0.5,dy:-5});
             }
@@ -122,10 +122,37 @@ var game = {
                         break;
                     }
                 }
-                // Deleting asteroids
+
                 if (this.asteroids[i].del==1) this.asteroids.splice(i,1);
+
+
             }
 
+        for (k in this.asteroids) {
+
+            // Asteroids and ship collisions
+            if (Math.abs(this.asteroids[k].x + 25 - this.ship.x - 35) < 60 && Math.abs(this.asteroids[k].y - this.ship.y) < 35) {
+                // Adding new explosion
+                this.explosions.push({x: this.asteroids[k].x - 25, y: this.asteroids[k].y - 25, animx: 0, animy: 0});
+
+                if(this.currentLevel.shieldBounce > 0) {
+                    this.currentLevel.shieldBounce--;
+                } else if(this.currentLevel.armourBounce > 0){
+                    this.currentLevel.armourBounce--;
+
+                    if(this.currentLevel.armourBounce === 0) {
+                        this.finish();
+                    }
+                }
+                //Mark asteroid on deleting
+                this.asteroids[k].del = 1;
+                this.fires.splice(j, 1);
+                break;
+            }
+
+            // Deleting asteroids
+            if (this.asteroids[k].del == 1) this.asteroids.splice(k, 1);
+        }
                 //Motion fires
             for (i in this.fires) {
                 this.fires[i].x=this.fires[i].x+this.fires[i].dx;
@@ -186,7 +213,8 @@ var game = {
             //Draw ship
             game.context.drawImage(game.currentLevel.ship, game.ship.x, game.ship.y);
             //Draw shield
-            game.context.drawImage(game.currentLevel.shield, 192*Math.floor(game.ship.animx),192*Math.floor(game.ship.animy),192,192, game.ship.x-25, game.ship.y-25, 120, 130);
+            game.currentLevel.shieldBounce > 0 ? game.context.drawImage(game.currentLevel.shield, 192*Math.floor(game.ship.animx),192*Math.floor(game.ship.animy),192,192, game.ship.x-25, game.ship.y-25, 120, 130): null;
+
             //Draw asteroids
             for (i in game.asteroids) {
                 //context.drawImage(asterimg, aster[i].x, aster[i].y, 50, 50);
