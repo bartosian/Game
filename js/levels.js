@@ -7,19 +7,28 @@ let levels = {
         nameLevel: "Wanderer",
         background: "fon",
         enemy: "astero",
-        shot: "shot"
+        shot: "shot",
+        weapons: 2,
+        shieldBounce: 2,
+        armourBounce: 3
     }, {   // First level
         ship: "ship2",
         nameLevel: "Predator",
         background: "fon",
         enemy: "astero",
-        shot: "shot2"
+        shot: "shot2",
+        weapons: 2,
+        shieldBounce: 3,
+        armourBounce: 2
     },{   // First level
         ship: "ship3",
         nameLevel: "Patrol",
         background: "fon",
         enemy: "astero",
-        shot: "shot3"
+        shot: "shot3",
+        weapons: 3,
+        shieldBounce: 2,
+        armourBounce: 2
     }],
     // Initialize level selection screen
     init: function() {
@@ -43,7 +52,7 @@ let levels = {
         // Declare a new currentLevel object
         game.currentLevel = { number: number };
         game.score = 0;
-        document.getElementById("score").innerHTML = "Score: " + game.score;
+        game.updateScore(0);
         var level = levels.data[number];
         // Load the background, foreground, and slingshot images
         game.currentLevel.backgroundImage = loader.loadImage("images/" + level.background + ".png");
@@ -53,6 +62,9 @@ let levels = {
         game.currentLevel.explosion = loader.loadImage("images/expl.png");
         game.currentLevel.shield = loader.loadImage("images/shield.png");
         game.currentLevel.sounds = [];
+        game.currentLevel.weapons = level.weapons;
+        game.currentLevel.shieldBounce = level.shieldBounce;
+        game.currentLevel.armourBounce = level.armourBounce;
 
         // Call game.start() once the assets have loaded
         loader.onload = game.start;

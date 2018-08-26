@@ -103,7 +103,10 @@ var game = {
 
                 // Screen bounce check
                 if (this.asteroids[i].x<=0 || this.asteroids[i].x>=650) this.asteroids[i].dx=-this.asteroids[i].dx;
-                if (this.asteroids[i].y>=750) this.asteroids.splice(i,1);
+                if (this.asteroids[i].y>=750) {
+                    this.asteroids.splice(i,1);
+                    this.updateScore(-3);
+                }
 
                 // Asteroids and fires collisions
                 for (j in this.fires) {
@@ -111,6 +114,7 @@ var game = {
                     if (Math.abs(this.asteroids[i].x+25-this.fires[j].x-15)<50 && Math.abs(this.asteroids[i].y-this.fires[j].y)<25) {
                         // Adding new explosion
                         this.explosions.push({x:this.asteroids[i].x-25,y:this.asteroids[i].y-25,animx:0,animy:0});
+                        this.updateScore(1);
 
                         //Mark asteroid on deleting
                         this.asteroids[i].del=1;
@@ -144,6 +148,28 @@ var game = {
             if (this.ship.animy>3) {
                 this.ship.animx=0; this.ship.animy=0;
             }
+    },
+    // Update score
+    updateScore: function(score) {
+        var scoreObj = document.getElementById("score");
+        game.score += score;
+
+        if(game.score < 0) {
+            game.score = 0;
+        }
+
+        if(game.score !== 0 && game.score % 100 === 0) {
+            scoreObj.classList.add("playAnim");
+            setTimeout(() => {
+                scoreObj.classList.remove("playAnim");
+            }, 1500);
+        }
+
+        if(game.score !== 0 && game.score % 60 === 0) {
+            game.score += 10;
+        }
+
+        scoreObj.innerHTML = "Score: " + game.score;
     },
     // Rendering objects
     animate: function() {

@@ -190,6 +190,28 @@ canvas {
     position: absolute;
     top: 5%;
     right: 5%;
+    width: 160px;
+    font-size: 1.5rem;
+    text-align: center;
+    background-image: url("../images/scoreBg.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    padding: 55px 20px 65px 40px;
+    opacity: 0.5;
+}
+
+.playAnim {
+    animation: goodScore 700ms ease-in-out 2 alternate;
+}
+
+@keyframes goodScore  {
+    from {
+        transform: scale(1 ,1);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1.2, 1.2);
+    }
 }
 
 
