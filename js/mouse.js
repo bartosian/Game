@@ -26,7 +26,16 @@ var mouse = {
         settingsBtn.addEventListener("click", mouse.mouseClickSettingScreen, false);
 
         var returnBtn = document.getElementById("returntostartscreen");
-        returnBtn.addEventListener("click", mouse.mouseClickHomeBtnHandler, false);
+        returnBtn.addEventListener("click", mouse.mouseClickReturnBtnHandler, false);
+
+        var easyLevelBtn = document.getElementById("defaultlevel");
+        easyLevelBtn.addEventListener("click", () => { mouse.mouseClickChooselevel(50)}, false);
+
+        var midLevelBtn = document.getElementById("experiencedLevel");
+        midLevelBtn.addEventListener("click",() => { mouse.mouseClickChooselevel(40)}, false);
+
+        var hardLevelBtn = document.getElementById("maniaklevel");
+        hardLevelBtn.addEventListener("click",() => { mouse.mouseClickChooselevel(15)}, false);
     },
     mousemovehandler: function(ev) {
         game.ship.x=event.offsetX-25;
@@ -79,5 +88,21 @@ var mouse = {
     mouseClickSettingScreen: function() {
         game.hideScreens();
         game.showScreen("setupscreen");
+    },
+
+    mouseClickChooselevel: function(rate) {
+        game.complexityControl = rate;
+
+        // Hide Screen
+        game.hideScreens();
+        // Display the game canvas and score
+        game.showScreen("gamestartscreen");
+    },
+
+    mouseClickReturnBtnHandler: function() {
+        // Hide Screen
+        game.hideScreens();
+        // Display the game canvas and score
+        game.showScreen("gamestartscreen");
     }
 };

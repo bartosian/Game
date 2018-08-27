@@ -27,6 +27,7 @@ var game = {
         // Hide all game layers and display the start screen
         game.hideScreens();
         game.showScreen("gamestartscreen");
+        game.complexityControl;
     },
     // Hide all the screens
     hideScreens: function() {
@@ -68,7 +69,7 @@ var game = {
         game.shields = [];
         game.ship = {x:350,y:350,animx:0,animy:0};
         game.Timer = 0;
-        game.counterAster = 50;
+        game.counterAster = game.complexityControl ? game.complexityControl : 50;
         game.speedFire = 30;
         game.cartridges = [];
         game.asterTotal = 0;
