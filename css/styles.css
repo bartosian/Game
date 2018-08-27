@@ -253,7 +253,7 @@ canvas {
     align-items: center;
 }
 
-#endingmessage {
+.endingmessage {
     font-size: 6rem;
     font-weight: bold;
     text-align: center;
@@ -278,6 +278,10 @@ canvas {
     animation: showHide ease-in 500ms  infinite  alternate;
 }
 
+/* Settings screen */
+#setupscreen .endingmessage {
+    margin: 2rem 0;
+}
 
 
 

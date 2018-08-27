@@ -24,6 +24,9 @@ var mouse = {
 
         var settingsBtn = document.getElementById("setupBtn");
         settingsBtn.addEventListener("click", mouse.mouseClickSettingScreen, false);
+
+        var returnBtn = document.getElementById("returntostartscreen");
+        returnBtn.addEventListener("click", mouse.mouseClickHomeBtnHandler, false);
     },
     mousemovehandler: function(ev) {
         game.ship.x=event.offsetX-25;
