@@ -19,6 +19,17 @@
             <img id="reload" src="images/reload.png" alt="Restart level">
             <span id="score">Score: 0</span>
         </div>
+        <div id="setupscreen" class="gamelayer">
+            <div class="ending-wrapper">
+                <p class="endingmessage">Settings</p>
+                <div class="btnGroup">
+                    <p class="endingoption"><img id="defaultlevel" src="images/reload.png" alt="Replay"><span>Level: Careful player</span></p>
+                    <p class="endingoption"><img id="experiencedLevel" src="images/reload.png" alt="Replay"><span>Level: Experienced player</span></p>
+                    <p class="endingoption"><img id="maniaklevel" src="images/nextLev.png" alt="Next"><span>Level: Crazy player</span></p>
+                    <p  class="endingoption"><img id="returntostartscreen" src="images/returnBtn.png" alt="Return"><span>Return to Start Screen</span></p>
+                </div>
+            </div>
+        </div>
         <div id="gamestartscreen" class="gamelayer">
             <div class="btn-group">
                 <div class="btn_wrap">
@@ -27,7 +38,7 @@
                 </div>
                 <div class="btn_wrap">
                     <h3 class="btn_wrap__header">Press to set up game</h3>
-                    <img src="images/setBtn.png" alt="Settings">
+                    <img id="setupBtn" src="images/setBtn.png" alt="Settings">
                 </div>
             </div>
             <img class="earth" src="./images/earth.gif" alt="Earth">
@@ -117,10 +128,10 @@
             <div id="loadingmessage"></div>
         </div>
         <div id="endingscreen" class="gamelayer">
-            <div id="ending-wrapper">
-                <p id="endingmessage">Game Over</p>
+            <div class="ending-wrapper">
+                <p class="endingmessage">Game Over</p>
                 <p id="scoremessage">You score: <span id="endScoreVal"></span></p>
-                <div id="btnGroup">
+                <div class="btnGroup">
                     <p class="endingoption"><img id="playcurrentlevel" src="images/reload.png" alt="Replay"><span>Replay Current Level</span></p>
                     <p class="endingoption"><img id="playnextlevel" src="images/nextLev.png" alt="Next"><span>Play Next Level</span></p>
                     <p  class="endingoption"><img id="returntolevelscreen" src="images/levels.png" alt="Return"><span>Return to Level Screen</span></p>

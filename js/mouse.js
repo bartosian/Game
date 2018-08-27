@@ -21,6 +21,9 @@ var mouse = {
 
         var levelScreenBtn = document.getElementById("returntolevelscreen");
         levelScreenBtn.addEventListener("click", mouse.mouseClickLevelsScreen, false);
+
+        var settingsBtn = document.getElementById("setupBtn");
+        settingsBtn.addEventListener("click", mouse.mouseClickSettingScreen, false);
     },
     mousemovehandler: function(ev) {
         game.ship.x=event.offsetX-25;
@@ -68,5 +71,10 @@ var mouse = {
     mouseClickLevelsScreen: function() {
         game.hideScreens();
         game.showScreen("levelselectscreen");
+    },
+
+    mouseClickSettingScreen: function() {
+        game.hideScreens();
+        game.showScreen("setupscreen");
     }
 };
