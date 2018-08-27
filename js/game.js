@@ -68,16 +68,23 @@ var game = {
         game.shields = [];
         game.ship = {x:350,y:350,animx:0,animy:0};
         game.Timer = 0;
-
+        game.counterAster = 50;
+        game.speedFire = 30;
+        game.cartridges = [];
+        game.asterTotal = 0;
+        game.satellites = [];
         game.animationFrame = window.requestAnimFrame(game.animate, game.canvas);
     },
 
     update: function() {
-            var counter = 10;
             // Increment Timer every loop
             this.Timer++;
+            // Checking total asteroid count
+            if(this.asterTotal === this.currentLevel.limit) {
+                this.finish("endingscreen");
+            }
             // Every 10th iteration creating new asteroid
-            if (this.Timer % counter == 0) {
+            if (this.Timer % this.counterAster == 0) {
                 this.asteroids.push({
                     angle:0,
                     dxangle:Math.random()*0.2-0.1,
@@ -87,18 +94,25 @@ var game = {
                     dx:Math.random()*2-1,
                     dy:Math.random()*2+1
                 });
+                this.asterTotal++;
+            }
 
+            if(this.Timer % 220 === 0) {
+                if((this.counterAster - 1)  > 0) {
+                    this.counterAster--;
+                }
             }
 
         //Every 30th iterations creating new fire
-            if (this.Timer%30==0) {
+            if (this.Timer % this.speedFire == 0) {
                 this.currentLevel.weapons > 2 ? this.fires.push({x:this.ship.x+22,y:this.ship.y,dx:0,dy:-5.2}) : null;
                 this.fires.push({x:this.ship.x+22,y:this.ship.y,dx:0.5,dy:-5});
                 this.fires.push({x:this.ship.x+22,y:this.ship.y,dx:-0.5,dy:-5});
             }
 
-        //Every 3600th iterations creating new shield
-        if (this.Timer%1800==0) {
+        //Every 1800th iterations creating new shield
+        if (this.Timer%2500==0) {
+            console.log(this.asterTotal);
             this.shields.push({
                 angle: 0,
                 dxangle:Math.random()*0.2-0.1,
@@ -107,6 +121,33 @@ var game = {
                 y:-50,
                 dx:Math.random()*2-1,
                 dy:Math.random()*2+1
+            });
+        }
+
+        //Every 1200th iterations creating new box with cartridges
+        if (this.Timer%1300==0) {
+            this.cartridges.push({
+                angle: 0,
+                dxangle:Math.random()*0.2-0.1,
+                del:0,
+                x:Math.random()*650,
+                y:-50,
+                dx:Math.random()*2-1,
+                dy:Math.random()*2+1
+            });
+        }
+
+        //Every 3000th iterations creating new satellite
+        if (this.Timer%3000==0) {
+            this.satellites.push({
+                angle: 0,
+                dxangle:Math.random()*0.05,
+                del:0,
+                x:Math.random()*650,
+                y:-50,
+                dx:Math.random()*2-1,
+                dy:Math.random()*2+1,
+                armourBounce: 6
             });
         }
 
@@ -165,6 +206,69 @@ var game = {
 
             if (this.shields[h].del==1) this.shields.splice(h,1);
 
+        }
+
+        // Cartridges motion
+        for (n in this.cartridges) {
+            this.cartridges[n].x=this.cartridges[n].x+this.cartridges[n].dx;
+            this.cartridges[n].y=this.cartridges[n].y+this.cartridges[n].dy;
+            this.cartridges[n].angle=this.cartridges[n].angle+this.cartridges[n].dxangle;
+
+            // Screen bounce check
+            if (this.cartridges[n].x<=0 || this.cartridges[n].x>=650) this.cartridges[n].dx=-this.cartridges[n].dx;
+            if (this.cartridges[n].y>=750) {
+                this.cartridges.splice(n,1);
+            }
+
+            // Cartridges and ship collisions
+            if (Math.abs(this.cartridges[n].x+25-this.ship.x-35)< 65 && Math.abs(this.cartridges[n].y-this.ship.y)<50) {
+                //Mark cartridges on deleting
+                this.cartridges[n].del=1;
+                if(this.speedFire === 30) {
+                    this.speedFire = 10;
+
+                    setTimeout(() => {
+                        game.speedFire = 30;
+                    }, 5000);
+                }
+            }
+
+            if (this.cartridges[n].del==1) this.cartridges.splice(n,1);
+
+        }
+
+        // Satellites motion
+        for (z in this.satellites) {
+            this.satellites[z].x=this.satellites[z].x+this.satellites[z].dx;
+            this.satellites[z].y=this.satellites[z].y+this.satellites[z].dy;
+            this.satellites[z].angle=this.satellites[z].angle+this.satellites[z].dxangle;
+
+            // Screen bounce check
+            if (this.satellites[z].x<=0 || this.satellites[z].x>=650) this.satellites[z].dx=-this.satellites[z].dx;
+            if (this.satellites[z].y>=750) {
+                this.cartridges.splice(z,1);
+            }
+
+            // Satellites and fires collisions
+            for (a in this.fires) {
+
+                if (Math.abs(this.satellites[z].x+40-this.fires[a].x-15)<65 && Math.abs(this.satellites[z].y-this.fires[a].y)<35) {
+                    // Adding new explosion
+                    this.explosions.push({x:this.satellites[z].x-35,y:this.satellites[z].y-35,animx:0,animy:0});
+
+                    if(this.satellites[z].armourBounce > 2) {
+                        this.satellites[z].armourBounce--;
+                    } else {
+                        //Mark satellites on deleting
+                        this.satellites[z].del=1;
+                        this.updateScore(-30);
+                    }
+                    this.fires.splice(a,1);
+                    break;
+                }
+            }
+
+            if (this.satellites[z].del==1) this.satellites.splice(z,1);
         }
 
         for (k in this.asteroids) {
@@ -270,6 +374,26 @@ var game = {
             game.context.translate(game.shields[s].x+25, game.shields[s].y+25);
             game.context.rotate(game.shields[s].angle);
             game.context.drawImage(game.currentLevel.shieldIcon, -25, -25, 50, 50);
+            game.context.restore();
+        }
+
+        //Draw cartridges
+        for (m in game.cartridges) {
+            //Rotate shields
+            game.context.save();
+            game.context.translate(game.cartridges[m].x+25, game.cartridges[m].y+25);
+            game.context.rotate(game.cartridges[m].angle);
+            game.context.drawImage(game.currentLevel.box, -25, -25, 50, 50);
+            game.context.restore();
+        }
+
+        //Draw satellites
+        for (q in game.satellites) {
+            //Rotate shields
+            game.context.save();
+            game.context.translate(game.satellites[q].x+25, game.satellites[q].y+25);
+            game.context.rotate(game.satellites[q].angle);
+            game.context.drawImage(game.currentLevel.friend, -25, -25, 70, 70);
             game.context.restore();
         }
             //Draw explosions

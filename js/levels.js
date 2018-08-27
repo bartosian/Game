@@ -5,30 +5,33 @@ let levels = {
     data: [{   // First level
         ship: "ship",
         nameLevel: "Wanderer",
-        background: "fon",
+        background: "fon1.jpg",
         enemy: "astero",
         shot: "shot",
         weapons: 2,
         shieldBounce: 2,
-        armourBounce: 3
+        armourBounce: 3,
+        levelLimit: 300
     }, {   // First level
         ship: "ship2",
         nameLevel: "Predator",
-        background: "fon",
+        background: "fon2.jpg",
         enemy: "astero",
         shot: "shot2",
         weapons: 2,
         shieldBounce: 3,
-        armourBounce: 2
+        armourBounce: 2,
+        levelLimit: 400
     },{   // First level
         ship: "ship3",
         nameLevel: "Patrol",
-        background: "fon",
+        background: "fon3.jpg",
         enemy: "astero",
         shot: "shot3",
         weapons: 3,
         shieldBounce: 2,
-        armourBounce: 2
+        armourBounce: 2,
+        levelLimit: 500
     }],
     // Initialize level selection screen
     init: function() {
@@ -55,19 +58,21 @@ let levels = {
         game.updateScore(0);
         var level = levels.data[number];
         // Load the background, foreground, and slingshot images
-        game.currentLevel.backgroundImage = loader.loadImage("images/" + level.background + ".png");
+        game.currentLevel.backgroundImage = loader.loadImage("images/backgrounds/" + level.background);
         game.currentLevel.ship = loader.loadImage("images/" + level.ship + ".png");
         game.currentLevel.enemy = loader.loadImage("images/" + level.enemy + ".png");
         game.currentLevel.shot = loader.loadImage("images/" + level.shot + ".png");
         game.currentLevel.explosion = loader.loadImage("images/expl.png");
         game.currentLevel.shield = loader.loadImage("images/shield.png");
         game.currentLevel.shieldIcon = loader.loadImage("images/shieldIcon.png");
+        game.currentLevel.box = loader.loadImage("images/cartridges.png");
         game.currentLevel.life = loader.loadImage("images/life.png");
         game.currentLevel.sounds = [];
         game.currentLevel.weapons = level.weapons;
         game.currentLevel.shieldBounce = level.shieldBounce;
         game.currentLevel.armourBounce = level.armourBounce;
-
+        game.currentLevel.limit = level.levelLimit;
+        game.currentLevel.friend = loader.loadImage("images/satellite.png");
         // Call game.start() once the assets have loaded
         loader.onload = game.start;
     }
