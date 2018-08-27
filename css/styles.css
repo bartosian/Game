@@ -283,5 +283,19 @@ canvas {
     margin: 2rem 0;
 }
 
+#setupscreen i {
+    color: red;
+    font-weight: bold;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    display: inline-block;
+    padding: 1rem;
+}
+
+#returntostartscreen + span {
+    display: inline-block;;
+    margin-top: 2rem;
+}
+
 
 
