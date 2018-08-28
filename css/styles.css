@@ -257,7 +257,7 @@ canvas {
 
 /* Score Screen */
 #scorescreen {
-    min-height: 60px;
+    height: 60px;
     font-size: 2rem;
     text-shadow: 0 0 2px black;
     color: white;
@@ -300,19 +300,28 @@ canvas {
     }
 }
 
-#levelMessage {
+.mes{
     position: absolute;
     min-height: 100px;
-    outline: 1px solid red;
     width: 100%;
+    margin-top: 200px;
     text-align: center;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    font-size: 5rem;
+    font-size: 6rem;
     text-transform: uppercase;
-    letter-spacing: 30px;
+    letter-spacing: 10px;
     align-items: center;
+    font-weight: bold;
+    color: red;
+    text-shadow: 0 0 5px black;
+    transform: scale(0, 0) rotate(1440deg);
+}
+
+.appear-message {
+    transform: scale(1, 1) rotate(0deg);
+    transition: transform 2500ms cubic-bezier(.83,1.37,.73,1.57);
 
 }
 

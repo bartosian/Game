@@ -98,7 +98,7 @@ var game = {
             this.Timer++;
             // Checking total asteroid count
             if(this.asterTotal === this.currentLevel.limit) {
-                this.finish("endingscreen");
+                this.finish("endingscreen", "You win!");
             }
             // Every 10th iteration creating new asteroid
             if (this.Timer % this.counterAster == 0) {
@@ -311,7 +311,7 @@ var game = {
                     this.currentLevel.armourBounce--;
 
                     if(this.currentLevel.armourBounce === 0) {
-                        this.finish("endingscreen");
+                        this.finish("endingscreen", "You lose!");
                     }
                 }
                 game.currentLevel.sounds.explosion.currentTime = 0;
@@ -444,14 +444,36 @@ var game = {
         if (!game.ended) {
             game.animationFrame = window.requestAnimationFrame(game.animate, game.canvas);
         } },
-    finish: function(screen) {
+    finish: function(screen, message) {
         game.ended = true;
-        var endScoreVal = document.getElementById("endScoreVal");
-        endScoreVal.innerHTML = game.score;
-        // Hide Screen
-        game.hideScreens();
-        // Display the game canvas and score
-        screen ? game.showScreen(screen) : game.showScreen("gamestartscreen");
+
+            if(message) {
+                var divMes = document.getElementById("levelMessage");
+                divMes.innerHTML = message;
+                divMes.classList.add("appear-message");
+
+                setTimeout(()=> {
+                    // Hide Screen
+                    game.hideScreens();
+                    // Display the game canvas and score
+                    screen ? game.showScreen(screen) : game.showScreen("gamestartscreen");
+                    divMes.classList.remove("appear-message");
+                    var endScoreVal = document.getElementById("endScoreVal");
+                    endScoreVal.innerHTML = game.score;
+
+                    game.hideScreens();
+                    // Display the game canvas and score
+                    screen ? game.showScreen(screen) : game.showScreen("gamestartscreen");
+                }, 3500);
+            } else {
+                var endScoreVal = document.getElementById("endScoreVal");
+                endScoreVal.innerHTML = game.score;
+
+                game.hideScreens();
+                // Display the game canvas and score
+                screen ? game.showScreen(screen) : game.showScreen("gamestartscreen");
+            }
+
     }
 };
 
