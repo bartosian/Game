@@ -195,15 +195,15 @@ canvas {
 }
 
 .left {
-    transform: translateX(-330px);
+    transform: translateX(-350px);
     opacity: 1;
-    transition: transform 1200ms linear, opacity 2s ease-in;
+    transition: transform 1700ms linear, opacity 2s ease-in;
 }
 
 .gameRules.right {
-    transform: translateX(330px);
+    transform: translateX(350px);
     opacity: 1;
-    transition: transform 1200ms linear, opacity 2s ease-in;
+    transition: transform 1700ms linear, opacity 2s ease-in;
 
 }
 

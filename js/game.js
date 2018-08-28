@@ -61,6 +61,11 @@ var game = {
         setTimeout(() => {
             rulesDivLeft.classList.add("left");
             rulesDivRight.classList.add("right");
+            let sound = new Audio();
+            sound.src = "sounds/sweep.mp3";
+            sound.play();
+            game.currentLevel.sounds.sweep.currentTime = 0;
+
         }, 100);
 
     },
