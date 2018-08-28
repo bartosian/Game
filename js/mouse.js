@@ -51,7 +51,7 @@ var mouse = {
 
     mouseClickSoundBtnHandler: function() {
         game.currentLevel.sounds.buttonPress.play();
-        if(game.currentLevel.sounds.length) {
+        if(Object.keys(game.currentLevel.sounds).length) {
             for(var sound of game.currentLevel.sounds) {
                 sound.muted = !sound.muted;
             }
