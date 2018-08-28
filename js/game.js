@@ -56,6 +56,13 @@ var game = {
         game.hideScreens();
         game.showScreen("levelselectscreen");
          sound.currentTime = 0;
+        var rulesDivLeft = document.getElementById("leftDiv");
+        var rulesDivRight = document.getElementById("rightDiv");
+        setTimeout(() => {
+            rulesDivLeft.classList.add("left");
+            rulesDivRight.classList.add("right");
+        }, 100);
+
     },
 
     // Start game

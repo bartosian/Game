@@ -45,6 +45,12 @@ let levels = {
             // Level label values are 1, 2. Levels are 0, 1
             levels.load(i);
             sound.currentTime = 0;
+
+            var rulesDivLeft = document.getElementById("leftDiv");
+            var rulesDivRight = document.getElementById("rightDiv");
+
+                rulesDivLeft.classList.remove("left");
+                rulesDivRight.classList.remove("right");
         };
         for (let i = 0; i < levels.data.length; i++) {
             var button = document.createElement("input");

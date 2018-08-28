@@ -37,7 +37,6 @@ var mouse = {
         var hardLevelBtn = document.getElementById("maniaklevel");
         hardLevelBtn.addEventListener("click",() => { mouse.mouseClickChooselevel(15)}, false);
 
-        var rulesDivLeft = document.getElementById("");
     },
     mousemovehandler: function(ev) {
         game.ship.x=event.offsetX-25;
