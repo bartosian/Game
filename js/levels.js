@@ -38,9 +38,13 @@ let levels = {
         var levelSelectScreen = document.getElementById("levelWrap");
         // An event handler to call
         var buttonClickHandler = function(i) {
+            let sound = new Audio();
+            sound.src = "sounds/buttonPres.mp3";
+            sound.play();
             game.hideScreen("levelselectscreen");
             // Level label values are 1, 2. Levels are 0, 1
             levels.load(i);
+            sound.currentTime = 0;
         };
         for (let i = 0; i < levels.data.length; i++) {
             var button = document.createElement("input");
@@ -67,8 +71,12 @@ let levels = {
         game.currentLevel.shieldIcon = loader.loadImage("images/shieldIcon.png");
         game.currentLevel.box = loader.loadImage("images/cartridges.png");
         game.currentLevel.life = loader.loadImage("images/life.png");
-        // game.currentLevel.sounds = {};
-        // game.currentLevel.sounds.shotSound = loader.loadSound("sounds/shot");
+        game.currentLevel.sounds = {};
+        game.currentLevel.sounds.shotSound = loader.loadSound("sounds/shot");
+        game.currentLevel.sounds.explosion = loader.loadSound("sounds/explosion");
+        game.currentLevel.sounds.buttonPress = loader.loadSound("sounds/buttonPres");
+        game.currentLevel.sounds.bonus = loader.loadSound("sounds/bonus");
+        game.currentLevel.sounds.score = loader.loadSound("sounds/score");
         game.currentLevel.weapons = level.weapons;
         game.currentLevel.shieldBounce = level.shieldBounce;
         game.currentLevel.armourBounce = level.armourBounce;

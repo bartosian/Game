@@ -50,8 +50,12 @@ var game = {
     },
     // Show Level Screen
     showLevelScreen: function() {
+        let sound = new Audio();
+        sound.src = "sounds/buttonPres.mp3";
+        sound.play();
         game.hideScreens();
         game.showScreen("levelselectscreen");
+         sound.currentTime = 0;
     },
 
     // Start game
@@ -106,9 +110,12 @@ var game = {
 
         //Every 30th iterations creating new fire
             if (this.Timer % this.speedFire == 0) {
+                game.currentLevel.sounds.shotSound.volume = 0.4;
+                game.currentLevel.sounds.shotSound.play();
                 this.currentLevel.weapons > 2 ? this.fires.push({x:this.ship.x+22,y:this.ship.y,dx:0,dy:-5.2}) : null;
                 this.fires.push({x:this.ship.x+22,y:this.ship.y,dx:0.5,dy:-5});
                 this.fires.push({x:this.ship.x+22,y:this.ship.y,dx:-0.5,dy:-5});
+                game.currentLevel.sounds.shotSound.currentTime = 0;
             }
 
         //Every 1800th iterations creating new shield
@@ -170,8 +177,10 @@ var game = {
 
                     if (Math.abs(this.asteroids[i].x+25-this.fires[j].x-15)<50 && Math.abs(this.asteroids[i].y-this.fires[j].y)<25) {
                         // Adding new explosion
+                        game.currentLevel.sounds.explosion.play();
                         this.explosions.push({x:this.asteroids[i].x-25,y:this.asteroids[i].y-25,animx:0,animy:0});
                         this.updateScore(1);
+                        game.currentLevel.sounds.explosion.currentTime = 0;
 
                         //Mark asteroid on deleting
                         this.asteroids[i].del=1;
@@ -198,11 +207,13 @@ var game = {
 
             // Shields and ship collisions
                 if (Math.abs(this.shields[h].x+25-this.ship.x-35)< 65 && Math.abs(this.shields[h].y-this.ship.y)<50) {
+                    game.currentLevel.sounds.bonus.play();
                     //Mark shield on deleting
                     this.shields[h].del=1;
                     if(this.currentLevel.shieldBounce < 3) {
                         this.currentLevel.shieldBounce++;
                     }
+                    game.currentLevel.sounds.bonus.currentTime = 0;
             }
 
             if (this.shields[h].del==1) this.shields.splice(h,1);
@@ -223,6 +234,7 @@ var game = {
 
             // Cartridges and ship collisions
             if (Math.abs(this.cartridges[n].x+25-this.ship.x-35)< 65 && Math.abs(this.cartridges[n].y-this.ship.y)<50) {
+                game.currentLevel.sounds.bonus.play();
                 //Mark cartridges on deleting
                 this.cartridges[n].del=1;
                 if(this.speedFire === 30) {
@@ -231,6 +243,7 @@ var game = {
                     setTimeout(() => {
                         game.speedFire = 30;
                     }, 5000);
+                    game.currentLevel.sounds.bonus.currentTime = 0;
                 }
             }
 
@@ -277,6 +290,7 @@ var game = {
             // Asteroids and ship collisions
             if (Math.abs(this.asteroids[k].x + 25 - this.ship.x - 35) < 60 && Math.abs(this.asteroids[k].y - this.ship.y) < 35) {
                 // Adding new explosion
+                game.currentLevel.sounds.explosion.play();
                 this.explosions.push({x: this.asteroids[k].x - 25, y: this.asteroids[k].y - 25, animx: 0, animy: 0});
 
                 if(this.currentLevel.shieldBounce > 0) {
@@ -288,6 +302,7 @@ var game = {
                         this.finish("endingscreen");
                     }
                 }
+                game.currentLevel.sounds.explosion.currentTime = 0;
                 //Mark asteroid on deleting
                 this.asteroids[k].del = 1;
                 break;
@@ -329,10 +344,12 @@ var game = {
         }
 
         if(game.score !== 0 && game.score % 100 === 0) {
+            game.currentLevel.sounds.score.play();
             scoreObj.classList.add("playAnim");
             setTimeout(() => {
                 scoreObj.classList.remove("playAnim");
             }, 1500);
+            game.currentLevel.sounds.score.currentTime = 0;
         }
 
         if(game.score !== 0 && game.score % 60 === 0) {

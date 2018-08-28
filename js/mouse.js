@@ -43,18 +43,23 @@ var mouse = {
     },
 
     mouseClickHomeBtnHandler: function() {
+        game.currentLevel.sounds.buttonPress.play();
         game.finish();
+        game.currentLevel.sounds.buttonPress.currentTime = 0;
     },
 
     mouseClickSoundBtnHandler: function() {
+        game.currentLevel.sounds.buttonPress.play();
         if(game.currentLevel.sounds.length) {
             for(var sound of game.currentLevel.sounds) {
                 sound.muted = !sound.muted;
             }
         }
+        game.currentLevel.sounds.buttonPress.currentTime = 0;
     },
 
     mouseClickReloadBtnHandler: function() {
+        game.currentLevel.sounds.buttonPress.play();
         game.score = 0;
         document.getElementById("score").innerHTML = "Score: " + game.score;
         // Call game.start() once the assets have loaded
@@ -63,13 +68,17 @@ var mouse = {
         game.explosions = [];
         game.ship = {x:350,y:350,animx:0,animy:0};
         game.Timer = 0;
+        game.currentLevel.sounds.buttonPress.currentTime = 0;
     },
 
     mouseClickRestartLevelBtnHandler: function () {
+        game.currentLevel.sounds.buttonPress.play();
         levels.load(game.currentLevel.number);
+        game.currentLevel.sounds.buttonPress.currentTime = 0;
     },
 
     mouseClickNextLevelBtn: function() {
+        game.currentLevel.sounds.buttonPress.play();
         var curLevel = game.currentLevel.number;
 
         if(levels.data.length > (curLevel + 1)) {
@@ -77,32 +86,47 @@ var mouse = {
         } else {
             levels.load(0);
         }
+        game.currentLevel.sounds.buttonPress.currentTime = 0;
 
     },
 
     mouseClickLevelsScreen: function() {
+        game.currentLevel.sounds.buttonPress.play();
         game.hideScreens();
         game.showScreen("levelselectscreen");
+        game.currentLevel.sounds.buttonPress.currentTime = 0;
     },
 
     mouseClickSettingScreen: function() {
+        let sound = new Audio();
+        sound.src = "sounds/buttonPres.mp3";
+        sound.play();
         game.hideScreens();
         game.showScreen("setupscreen");
+        sound.currentTime = 0;
     },
 
     mouseClickChooselevel: function(rate) {
+        let sound = new Audio();
+        sound.src = "sounds/buttonPres.mp3";
+        sound.play();
         game.complexityControl = rate;
 
         // Hide Screen
         game.hideScreens();
         // Display the game canvas and score
         game.showScreen("gamestartscreen");
+        sound.currentTime = 0;
     },
 
     mouseClickReturnBtnHandler: function() {
+        let sound = new Audio();
+        sound.src = "sounds/buttonPres.mp3";
+        sound.play();
         // Hide Screen
         game.hideScreens();
         // Display the game canvas and score
         game.showScreen("gamestartscreen");
+        sound.currentTime = 0;
     }
 };
