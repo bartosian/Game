@@ -71,17 +71,19 @@ let levels = {
         game.currentLevel.shieldIcon = loader.loadImage("images/shieldIcon.png");
         game.currentLevel.box = loader.loadImage("images/cartridges.png");
         game.currentLevel.life = loader.loadImage("images/life.png");
+        game.currentLevel.friend = loader.loadImage("images/satellite.png");
+        // Load sound for game
         game.currentLevel.sounds = {};
         game.currentLevel.sounds.shotSound = loader.loadSound("sounds/shot");
         game.currentLevel.sounds.explosion = loader.loadSound("sounds/explosion");
         game.currentLevel.sounds.buttonPress = loader.loadSound("sounds/buttonPres");
         game.currentLevel.sounds.bonus = loader.loadSound("sounds/bonus");
         game.currentLevel.sounds.score = loader.loadSound("sounds/score");
+        // Load level characteristics
         game.currentLevel.weapons = level.weapons;
         game.currentLevel.shieldBounce = level.shieldBounce;
         game.currentLevel.armourBounce = level.armourBounce;
         game.currentLevel.limit = level.levelLimit;
-        game.currentLevel.friend = loader.loadImage("images/satellite.png");
         // Call game.start() once the assets have loaded
         loader.onload = game.start;
     }
