@@ -247,6 +247,7 @@ var game = {
             // Cartridges and ship collisions
             if (Math.abs(this.cartridges[n].x+25-this.ship.x-35)< 65 && Math.abs(this.cartridges[n].y-this.ship.y)<50) {
                 game.currentLevel.sounds.bonus.play();
+                game.currentLevel.sounds.metronome.play;
                 //Mark cartridges on deleting
                 this.cartridges[n].del=1;
                 if(this.speedFire === 30) {
@@ -256,6 +257,7 @@ var game = {
                         game.speedFire = 30;
                     }, 5000);
                     game.currentLevel.sounds.bonus.currentTime = 0;
+                    game.currentLevel.sounds.metronome.currentTime = 0;
                 }
             }
 
@@ -448,6 +450,21 @@ var game = {
         game.ended = true;
 
             if(message) {
+
+                if(message === "You lose!") {
+                    game.currentLevel.sounds.lose.play();
+                    setTimeout(() => {
+
+                        ga
+                    }, 2000);
+
+                } else if(message === "You win!") {
+                    game.currentLevel.sounds.win.play();
+                    game.currentLevel.sounds.win.currentTime = 0;
+
+                }
+
+
                 var divMes = document.getElementById("levelMessage");
                 divMes.innerHTML = message;
                 divMes.classList.add("appear-message");

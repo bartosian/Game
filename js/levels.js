@@ -87,6 +87,9 @@ let levels = {
         game.currentLevel.sounds.bonus = loader.loadSound("sounds/bonus");
         game.currentLevel.sounds.score = loader.loadSound("sounds/score");
         game.currentLevel.sounds.sweep = loader.loadSound("sounds/sweep");
+        game.currentLevel.sounds.win = loader.loadSound("sounds/win");
+        game.currentLevel.sounds.lose = loader.loadSound("sounds/lose");
+        game.currentLevel.sounds.metronome = loader.loadSound("sounds/metronome");
         // Load level characteristics
         game.currentLevel.weapons = level.weapons;
         game.currentLevel.shieldBounce = level.shieldBounce;
