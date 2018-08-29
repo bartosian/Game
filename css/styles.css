@@ -409,4 +409,51 @@ canvas {
 }
 
 
+/* Footer */
 
+footer {
+    width:100%;
+    padding: 1rem;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+    color: white;
+}
+
+.copyright {
+    width: 60%;
+}
+
+.social-links {
+    display: flex;
+    list-style: none;
+}
+
+.social-links li {
+    margin: 0 0.5rem;
+}
+
+.social-links i {
+    font-size: 2rem;
+
+}
+
+.links-wrapper {
+    display: flex;
+    width: 40%;
+    align-items: center;
+}
+
+.linkedIn a {
+    color: rgb(1, 119, 181);
+}
+
+.gitHub a {
+    color: rgb(36, 41, 46);
+}
+
+
+.gmail a {
+    color: rgb(192, 59, 44);
+}

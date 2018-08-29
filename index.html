@@ -3,6 +3,7 @@
 <head>
     <meta http-equiv="Content-type" content="text/html; charset=utf-8">
     <title>Froot Wars</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Electrolize" rel="stylesheet">
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
@@ -49,21 +50,21 @@
             <div class="gameRules" id="leftDiv">
                 <h3 class="gameRules__header">Rules of the game</h3>
                 <p class="gameRules__text">
-                    You are a spaceship pilot. You must try to destroy all the falling meteorites, while keeping your ship.Each collision of a ship with meteorite will reduce its protection. For each shot down a meteor you will receive points. The game will end when you destroy all meteorites, or lose your ship.
+                    You are a spaceship pilot. You must try to destroy all the falling meteorites, while keeping your ship.Each collision of a ship with meteorite will reduce its protection. For each shot down a meteor you will receive points. <br/><br/> The game will end when you destroy the required number of meteorites, or lose your ship. The number of meteorites in each level is different and depends on the level of complexity. If you think that the game is too easy for you, you can change the difficulty level in the settings. <br/><br/> To start playing you need to choose one of the ships, each of which has its own characteristics. They have different levels of protection, armor and weapons. In the game you need to use only the mouse to move the ship in space.
                 </p>
             </div>
             <div class="gameRules" id="rightDiv">
                 <h3 class="gameRules__header">Bonuses in the game</h3>
                 <p class="gameRules__text">
-                    At the beginning of the game you have a certain number of lives and armour, but during the game you can catxh falling bonuses and thereby increase your chances of winning.
+                    At the beginning of the game you have a certain number of lives and armour, but during the game you can catch falling bonuses and thereby increase your chances of winning.
                 </p>
                 <div class="bonuses_images">
                     <img class="bonuses_img" src="images/shieldIcon.png" alt="Shield">
                     <p><i>Shield</i>, that will add armor to your ship</p>
                     <img class="bonuses_img" src="images/cartridges.png" alt="Cartridges">
-                    <p><i>Ammunition</i>, which at the time will increase the number of shots your ship</p>
+                    <p><i>Ammunition</i>, which for a while will increase the rate of your ship</p>
                     <img class="bonuses_img" src="images/satellite.png" alt="Satellite">
-                    <p><i>Earth satellites</i> that can not be knocked down, since they provide your connection to the planet</p>
+                    <p><i>Earth satellites</i> that can not be destroyed, because they provide you a connection with the Earth. For each satellite you run down your scores will decrease.</p>
                 </div>
             </div>
             <div id="levelWrap">
@@ -160,6 +161,31 @@
             </div>
         </div>
     </div>
+    <footer>
+        <p class="copyright">
+            <i class="far fa-copyright"></i> This game was created by Kiryl Bartashevich.
+        </p>
+        <div class="links-wrapper">
+            <span>Links to his pages:</span>
+            <ul class="social-links">
+                <li class="linkedIn">
+                    <a href="https://www.linkedin.com/in/kirbart/" target="_blank">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                </li>
+                <li class="gitHub">
+                    <a href="https://github.com/bartosian" target="_blank">
+                        <i class="fab fa-github-square"></i>
+                    </a>
+                </li>
+                <li class="gmail">
+                    <a href="https://mail.google.com/mail/u/0/#inbox" target="_blank">
+                        <i class="fab fa-google-plus-square"></i>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </footer>
 </div>
 <script src="js/game.js" type="text/javascript"></script>
 <script src="js/loader.js" type="text/javascript"></script>
