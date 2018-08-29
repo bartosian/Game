@@ -321,7 +321,7 @@ canvas {
 
 .appear-message {
     transform: scale(1, 1) rotate(0deg);
-    transition: transform 2500ms cubic-bezier(.83,1.37,.73,1.57);
+    transition: transform 1500ms cubic-bezier(.83,1.37,.73,1.57);
 
 }
 

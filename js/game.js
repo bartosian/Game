@@ -64,7 +64,7 @@ var game = {
             let sound = new Audio();
             sound.src = "sounds/sweep.mp3";
             sound.play();
-            game.currentLevel.sounds.sweep.currentTime = 0;
+
 
         }, 100);
 
@@ -464,7 +464,7 @@ var game = {
                     game.hideScreens();
                     // Display the game canvas and score
                     screen ? game.showScreen(screen) : game.showScreen("gamestartscreen");
-                }, 3500);
+                }, 3000);
             } else {
                 var endScoreVal = document.getElementById("endScoreVal");
                 endScoreVal.innerHTML = game.score;

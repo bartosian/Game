@@ -38,7 +38,7 @@ var mouse = {
         hardLevelBtn.addEventListener("click",() => { mouse.mouseClickChooselevel(15)}, false);
 
     },
-    mousemovehandler: function(ev) {
+    mousemovehandler: function(event) {
         game.ship.x=event.offsetX-25;
         game.ship.y=event.offsetY-13;
     },
@@ -97,6 +97,16 @@ var mouse = {
         game.hideScreens();
         game.showScreen("levelselectscreen");
         game.currentLevel.sounds.buttonPress.currentTime = 0;
+        var rulesDivLeft = document.getElementById("leftDiv");
+        var rulesDivRight = document.getElementById("rightDiv");
+        setTimeout(() => {
+            rulesDivLeft.classList.add("left");
+            rulesDivRight.classList.add("right");
+            let sound = new Audio();
+            sound.src = "sounds/sweep.mp3";
+            sound.play();
+        }, 100);
+
     },
 
     mouseClickSettingScreen: function() {
