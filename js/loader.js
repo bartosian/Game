@@ -32,7 +32,7 @@ var loader = {
         image.src = url;
         return image;
     },
-    soundFileExtn: ".ogg",
+    soundFileExtn: ".ogg",   
     // Loader for music
     loadSound: function(url) {
         this.loaded = false;
