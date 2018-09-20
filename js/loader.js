@@ -19,7 +19,7 @@ var loader = {
             oggSupport = false;
         }
         // Check for ogg, then mp3, and finally set soundFileExtn to undefined
-        loader.soundFileExtn = mp3Support ? ".mp3" : oggSupport ? ".ogg" : undefined;
+        loader.soundFileExtn = mp3Support ? ".mp3" : oggSupport ? ".mp3" : undefined;
     },
 
     // Loader for images
@@ -32,7 +32,7 @@ var loader = {
         image.src = url;
         return image;
     },
-    soundFileExtn: ".ogg",   
+    soundFileExtn: ".mp3",
     // Loader for music
     loadSound: function(url) {
         this.loaded = false;
